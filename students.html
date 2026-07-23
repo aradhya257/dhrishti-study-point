@@ -1,0 +1,74 @@
+{% extends "admin/_layout.html" %}
+{% block admin_content %}
+
+<div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+  <h2 class="mb-0">Students</h2>
+  <a href="{{ url_for('admin.add_student') }}" class="btn btn-primary-brand">
+    <i class="bi bi-person-plus"></i> Add Student
+  </a>
+</div>
+
+<form method="GET" action="{{ url_for('admin.students') }}" class="row g-2 mb-4">
+  <div class="col-sm-6 col-md-5">
+    <input type="text" name="q" class="form-control" placeholder="Search by name or mobile number..." value="{{ query }}">
+  </div>
+  <div class="col-sm-4 col-md-3">
+    <select name="fee_status" class="form-select">
+      <option value="" {{ 'selected' if not fee_filter }}>All Fee Status</option>
+      <option value="Paid" {{ 'selected' if fee_filter == 'Paid' }}>Paid</option>
+      <option value="Unpaid" {{ 'selected' if fee_filter == 'Unpaid' }}>Unpaid</option>
+    </select>
+  </div>
+  <div class="col-sm-2 col-md-2">
+    <button type="submit" class="btn btn-outline-sage w-100"><i class="bi bi-search"></i> Search</button>
+  </div>
+</form>
+
+<div class="card-quiet">
+  <div class="table-responsive">
+    <table class="table table-quiet">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Mobile</th>
+          <th>Seat No</th>
+          <th>Fee Status</th>
+          <th>Joined</th>
+          <th class="text-end">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for s in students %}
+        <tr>
+          <td>{{ s.name }}</td>
+          <td>{{ s.mobile }}</td>
+          <td>{{ s.seat_no or '—' }}</td>
+          <td>
+            <form method="POST" action="{{ url_for('admin.toggle_fee', student_id=s.id) }}" class="d-inline">
+              <button type="submit" class="badge border-0 {{ 'badge-paid' if s.fee_status == 'Paid' else 'badge-unpaid' }}" style="cursor:pointer;" title="Click to toggle">
+                {{ s.fee_status }}
+              </button>
+            </form>
+          </td>
+          <td>{{ s.join_date.strftime('%d %b %Y') }}</td>
+          <td class="text-end">
+            <a href="{{ url_for('admin.edit_student', student_id=s.id) }}" class="btn btn-sm btn-outline-sage me-1" title="Edit">
+              <i class="bi bi-pencil"></i>
+            </a>
+            <form method="POST" action="{{ url_for('admin.delete_student', student_id=s.id) }}" class="d-inline"
+                  onsubmit="return confirm('Delete {{ s.name }}? This cannot be undone.');">
+              <button type="submit" class="btn btn-sm btn-outline-danger" title="Delete">
+                <i class="bi bi-trash"></i>
+              </button>
+            </form>
+          </td>
+        </tr>
+        {% else %}
+        <tr><td colspan="6" class="text-center text-muted-light py-4">No students found.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% endblock %}

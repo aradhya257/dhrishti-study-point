@@ -1,0 +1,32 @@
+# Render Blueprint — deploy with "New + > Blueprint" on Render and point it
+# at this repository. Fill in / connect your own MySQL database (Render's
+# native DB is Postgres, so for MySQL use an external provider such as
+# PlanetScale, Railway, Aiven, or your own MySQL host) and set DATABASE_URL
+# in the dashboard.
+
+services:
+  - type: web
+    name: dhrishti-study-point
+    env: python
+    plan: free
+    buildCommand: "pip install -r requirements.txt && python seed.py"
+    startCommand: "gunicorn wsgi:app"
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DATABASE_URL
+        sync: false
+      - key: TOTAL_SEATS
+        value: "40"
+      - key: ADMIN_USERNAME
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: STUDY_POINT_PHONE
+        sync: false
+      - key: STUDY_POINT_EMAIL
+        sync: false
+      - key: GOOGLE_MAP_EMBED_URL
+        sync: false
+      - key: PYTHON_VERSION
+        value: "3.11.9"
