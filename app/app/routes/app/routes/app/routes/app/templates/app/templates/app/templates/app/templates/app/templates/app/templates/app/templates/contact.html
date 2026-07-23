@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="section pt-4">
+  <div class="container">
+    <p class="section-title-eyebrow text-center">Get In Touch</p>
+    <h1 class="text-center mb-5">Contact Dhrishti Study Point</h1>
+
+    <div class="row g-5">
+      <div class="col-lg-6">
+        <div class="card-quiet mb-4">
+          <h5><i class="bi bi-geo-alt-fill"></i> Address</h5>
+          {% for line in STUDY_POINT_ADDRESS_LINES %}
+            <p class="text-muted-light mb-1">{{ line }}</p>
+          {% endfor %}
+        </div>
+        <div class="card-quiet mb-4">
+          <h5><i class="bi bi-telephone-fill"></i> Phone</h5>
+          <p class="text-muted-light mb-0">{{ STUDY_POINT_PHONE }}</p>
+        </div>
+        <div class="card-quiet mb-4">
+          <h5><i class="bi bi-envelope-fill"></i> Email</h5>
+          <p class="text-muted-light mb-0">{{ STUDY_POINT_EMAIL }}</p>
+        </div>
+        <div class="card-quiet mb-4">
+          <h5><i class="bi bi-file-earmark-image"></i> Flyer</h5>
+          <p class="text-muted-light mb-2">Download our flyer to share or print.</p>
+          <a href="{{ url_for('static', filename='img/poster.png') }}" download class="btn btn-outline-sage btn-sm">
+            <i class="bi bi-download"></i> Download Flyer
+          </a>
+        </div>
+        <div class="map-frame">
+          <iframe src="{{ GOOGLE_MAP_EMBED_URL }}" loading="lazy" title="Dhrishti Study Point location map"></iframe>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="card-quiet">
+          <h5 class="mb-3">Send Us a Message</h5>
+          <form method="POST" action="{{ url_for('main.contact') }}">
+            <div class="mb-3">
+              <label for="name" class="form-label">Full Name</label>
+              <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="mb-3">
+              <label for="mobile" class="form-label">Mobile Number</label>
+              <input type="tel" class="form-control" id="mobile" name="mobile" pattern="[0-9]{10,15}">
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email (optional)</label>
+              <input type="email" class="form-control" id="email" name="email">
+            </div>
+            <div class="mb-3">
+              <label for="message" class="form-label">Message</label>
+              <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary-brand w-100">
+              <i class="bi bi-send-fill"></i> Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
