@@ -1,0 +1,64 @@
+{% extends "admin/_layout.html" %}
+{% block admin_content %}
+
+<div class="mb-4">
+  <a href="{{ url_for('admin.students') }}" class="text-muted-light" style="font-size:.9rem;">
+    <i class="bi bi-arrow-left"></i> Back to Students
+  </a>
+  <h2 class="mt-2 mb-0">{{ 'Edit Student' if student else 'Add New Student' }}</h2>
+</div>
+
+<div class="card-quiet" style="max-width: 560px;">
+  <form method="POST">
+    <div class="mb-3">
+      <label for="name" class="form-label">Full Name</label>
+      <input type="text" class="form-control" id="name" name="name" required
+             value="{{ student.name if student else '' }}">
+    </div>
+    <div class="mb-3">
+      <label for="mobile" class="form-label">Mobile Number</label>
+      <input type="tel" class="form-control" id="mobile" name="mobile" required
+             value="{{ student.mobile if student else '' }}">
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">Email (optional)</label>
+      <input type="email" class="form-control" id="email" name="email"
+             value="{{ student.email if student else '' }}">
+    </div>
+    <div class="mb-3">
+      <label for="join_date" class="form-label">Join Date</label>
+      <input type="date" class="form-control" id="join_date" name="join_date"
+             value="{{ student.join_date.isoformat() if student else today }}">
+    </div>
+    <div class="mb-3">
+      <label for="seat_no" class="form-label">Assign Seat</label>
+      <select class="form-select" id="seat_no" name="seat_no">
+        <option value="">-- No seat assigned --</option>
+        {% for seat in available_seats %}
+          <option value="{{ seat.seat_no }}" {{ 'selected' if student and student.seat_no == seat.seat_no }}>
+            Seat {{ seat.seat_no }}
+          </option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="row">
+      <div class="col-6 mb-3">
+        <label for="fee_status" class="form-label">Fee Status</label>
+        <select class="form-select" id="fee_status" name="fee_status">
+          <option value="Unpaid" {{ 'selected' if student and student.fee_status == 'Unpaid' }}>Unpaid</option>
+          <option value="Paid" {{ 'selected' if student and student.fee_status == 'Paid' }}>Paid</option>
+        </select>
+      </div>
+      <div class="col-6 mb-3">
+        <label for="fee_amount" class="form-label">Fee Amount (&#8377;)</label>
+        <input type="number" class="form-control" id="fee_amount" name="fee_amount" min="0"
+               value="{{ student.fee_amount if student else 900 }}">
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary-brand w-100">
+      <i class="bi bi-check2-circle"></i> {{ 'Save Changes' if student else 'Add Student' }}
+    </button>
+  </form>
+</div>
+
+{% endblock %}
