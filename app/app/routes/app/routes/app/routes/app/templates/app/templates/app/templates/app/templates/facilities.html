@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="section pt-4">
+  <div class="container">
+    <p class="section-title-eyebrow text-center">Facilities</p>
+    <h1 class="text-center mb-3">Everything set up for long, focused hours</h1>
+    <p class="text-muted-light text-center mb-4" style="max-width: 640px; margin-inline: auto;">
+      Every facility at Dhrishti Study Point is chosen with one goal — helping you sit
+      down and stay focused for as long as you need to.
+    </p>
+
+    <img src="{{ url_for('static', filename='img/study-hall.jpg') }}"
+         alt="Students studying at individual desks at Dhrishti Study Point"
+         class="img-fluid rounded mb-5" style="border: 1px solid var(--paper-line); object-fit: cover; width: 100%; max-height: 380px;">
+
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-4">
+        <div class="card-quiet">
+          <div class="icon-wrap"><i class="bi bi-wifi"></i></div>
+          <h5>High-Speed WiFi</h5>
+          <p class="text-muted-light mb-0">Reliable internet for online mock tests, research and e-books, available throughout the hall.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="card-quiet">
+          <div class="icon-wrap"><i class="bi bi-volume-mute"></i></div>
+          <h5>Silent Environment</h5>
+          <p class="text-muted-light mb-0">A strictly enforced no-talking, no-phone-call policy so the room stays library-quiet at all times.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="card-quiet">
+          <div class="icon-wrap"><i class="bi bi-person-workspace"></i></div>
+          <h5>Individual Seating</h5>
+          <p class="text-muted-light mb-0">Assigned, partitioned desks with proper lighting and power sockets for laptops and lamps.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="card-quiet">
+          <div class="icon-wrap"><i class="bi bi-snow"></i></div>
+          <h5>Air Conditioned Hall</h5>
+          <p class="text-muted-light mb-0">A climate-controlled room that stays comfortable through Varanasi's summers and winters alike.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="card-quiet">
+          <div class="icon-wrap"><i class="bi bi-cup-hot"></i></div>
+          <h5>Drinking Water</h5>
+          <p class="text-muted-light mb-0">Clean drinking water available on the premises throughout the day.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="card-quiet">
+          <div class="icon-wrap"><i class="bi bi-clock"></i></div>
+          <h5>Extended Hours</h5>
+          <p class="text-muted-light mb-0">Long daily hours designed around exam timelines, including early-morning and late-evening slots.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="card-quiet">
+          <div class="icon-wrap"><i class="bi bi-shield-check"></i></div>
+          <h5>Locker Facility</h5>
+          <p class="text-muted-light mb-0">Secure storage for books and belongings so you don't need to carry everything home daily.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="card-quiet">
+          <div class="icon-wrap"><i class="bi bi-lightbulb"></i></div>
+          <h5>Bright, Even Lighting</h5>
+          <p class="text-muted-light mb-0">Glare-free, eye-friendly lighting across every desk for comfortable long study sessions.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="card-quiet">
+          <div class="icon-wrap"><i class="bi bi-cctv"></i></div>
+          <h5>CCTV Monitored</h5>
+          <p class="text-muted-light mb-0">A safe, supervised environment for both daytime and late-hour study sessions.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-5">
+      <a href="{{ url_for('main.seats') }}" class="btn btn-primary-brand me-2">Check Seat Availability</a>
+      <a href="{{ url_for('main.fees') }}" class="btn btn-outline-sage">View Fee Structure</a>
+    </div>
+  </div>
+</section>
+{% endblock %}
