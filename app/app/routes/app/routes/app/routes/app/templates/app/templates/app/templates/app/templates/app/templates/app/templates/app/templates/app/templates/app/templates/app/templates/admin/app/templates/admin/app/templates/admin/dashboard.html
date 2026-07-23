@@ -1,0 +1,97 @@
+{% extends "admin/_layout.html" %}
+{% block admin_content %}
+
+<div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+  <div>
+    <h2 class="mb-0">Dashboard</h2>
+    <p class="text-muted-light mb-0">Overview for {{ today.strftime('%d %B %Y') }}</p>
+  </div>
+  <a href="{{ url_for('admin.add_student') }}" class="btn btn-primary-brand">
+    <i class="bi bi-person-plus"></i> Add Student
+  </a>
+</div>
+
+<div class="row g-3 mb-4">
+  <div class="col-sm-6 col-lg-3">
+    <div class="stat-card">
+      <div class="stat-number">{{ total_students }}</div>
+      <div class="stat-label">Total Students</div>
+    </div>
+  </div>
+  <div class="col-sm-6 col-lg-3">
+    <div class="stat-card">
+      <div class="stat-number">{{ available_seats }} / {{ total_seats }}</div>
+      <div class="stat-label">Seats Available</div>
+    </div>
+  </div>
+  <div class="col-sm-6 col-lg-3">
+    <div class="stat-card">
+      <div class="stat-number">{{ paid_count }}</div>
+      <div class="stat-label">Fees Paid</div>
+    </div>
+  </div>
+  <div class="col-sm-6 col-lg-3">
+    <div class="stat-card">
+      <div class="stat-number">{{ unpaid_count }}</div>
+      <div class="stat-label">Fees Unpaid</div>
+    </div>
+  </div>
+</div>
+
+<div class="row g-3 mb-4">
+  <div class="col-sm-6 col-lg-3">
+    <div class="stat-card">
+      <div class="stat-number">{{ present_today }}</div>
+      <div class="stat-label">Present Today</div>
+    </div>
+  </div>
+  <div class="col-sm-6 col-lg-3">
+    <div class="stat-card">
+      <div class="stat-number">{{ occupied_seats }}</div>
+      <div class="stat-label">Seats Occupied</div>
+    </div>
+  </div>
+  <div class="col-sm-6 col-lg-3">
+    <div class="stat-card">
+      <div class="stat-number">{{ unread_messages }}</div>
+      <div class="stat-label">New Messages</div>
+    </div>
+  </div>
+</div>
+
+<div class="card-quiet">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h5 class="mb-0">Recently Added Students</h5>
+    <a href="{{ url_for('admin.students') }}" class="text-decoration-underline" style="font-size:.9rem;">View all</a>
+  </div>
+  <div class="table-responsive">
+    <table class="table table-quiet">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Mobile</th>
+          <th>Seat No</th>
+          <th>Fee Status</th>
+          <th>Joined</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for s in recent_students %}
+        <tr>
+          <td>{{ s.name }}</td>
+          <td>{{ s.mobile }}</td>
+          <td>{{ s.seat_no or '—' }}</td>
+          <td>
+            <span class="badge {{ 'badge-paid' if s.fee_status == 'Paid' else 'badge-unpaid' }}">{{ s.fee_status }}</span>
+          </td>
+          <td>{{ s.join_date.strftime('%d %b %Y') }}</td>
+        </tr>
+        {% else %}
+        <tr><td colspan="5" class="text-center text-muted-light py-4">No students added yet.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% endblock %}
