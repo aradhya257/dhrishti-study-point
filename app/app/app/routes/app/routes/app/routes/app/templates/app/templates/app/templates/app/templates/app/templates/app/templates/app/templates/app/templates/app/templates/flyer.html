@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="section pt-4">
+  <div class="container text-center" style="max-width: 640px;">
+    <p class="section-title-eyebrow">Share &amp; Print</p>
+    <h1 class="mb-4">Dhrishti Study Point Flyer</h1>
+
+    <img src="{{ url_for('static', filename='img/poster.png') }}"
+         alt="Dhrishti Study Point flyer with facilities, address and contact number"
+         class="img-fluid rounded mb-4" style="border: 1px solid var(--paper-line); box-shadow: var(--shadow-soft);">
+
+    <div>
+      <a href="{{ url_for('static', filename='img/poster.png') }}" download class="btn btn-primary-brand btn-lg px-5">
+        <i class="bi bi-download"></i> Download Flyer
+      </a>
+    </div>
+    <p class="text-muted-light mt-4" style="font-size: .9rem;">
+      Feel free to print this or share it on WhatsApp with anyone looking for a quiet
+      place to study in Varanasi.
+    </p>
+  </div>
+</section>
+{% endblock %}
