@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="section pt-4">
+  <div class="container">
+    <p class="section-title-eyebrow text-center">Fee Structure</p>
+    <h1 class="text-center mb-3">Simple, affordable plans</h1>
+    <p class="text-muted-light text-center mb-5" style="max-width: 600px; margin-inline: auto;">
+      No hidden charges. Choose a plan that fits your preparation timeline.
+      Fees are payable at the counter or on registration.
+    </p>
+
+    <div class="row g-4 justify-content-center">
+      <div class="col-md-4">
+        <div class="fee-card">
+          <h5 class="text-uppercase text-muted-light" style="letter-spacing:.08em; font-size:.8rem;">Daily</h5>
+          <div class="price">&#8377;50 <span>/ day</span></div>
+          <p class="text-muted-light mt-3 mb-4">Perfect for a trial visit or occasional focused sessions.</p>
+          <a href="{{ url_for('main.register') }}" class="btn btn-outline-sage w-100">Choose Plan</a>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="fee-card featured">
+          <span class="badge" style="background: var(--brass); color: var(--ink); position:absolute; top:-12px; left:50%; transform:translateX(-50%);">Most Popular</span>
+          <h5 class="text-uppercase text-muted-light" style="letter-spacing:.08em; font-size:.8rem;">Monthly</h5>
+          <div class="price">&#8377;900 <span>/ month</span></div>
+          <p class="text-muted-light mt-3 mb-4">A dedicated, reserved seat for the full month — our most popular plan.</p>
+          <a href="{{ url_for('main.register') }}" class="btn btn-primary-brand w-100">Choose Plan</a>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="fee-card">
+          <h5 class="text-uppercase text-muted-light" style="letter-spacing:.08em; font-size:.8rem;">Quarterly</h5>
+          <div class="price">&#8377;2400 <span>/ 3 months</span></div>
+          <p class="text-muted-light mt-3 mb-4">Best value for long-term exam preparation, billed every 3 months.</p>
+          <a href="{{ url_for('main.register') }}" class="btn btn-outline-sage w-100">Choose Plan</a>
+        </div>
+      </div>
+    </div>
+
+    <p class="text-muted-light text-center mt-5 mb-0" style="font-size:.85rem;">
+      * Fees are indicative and may be revised by management. Please confirm current pricing
+      at the study point before making payment.
+    </p>
+  </div>
+</section>
+{% endblock %}
