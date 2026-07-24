@@ -1,0 +1,28 @@
+{% extends "admin/_layout.html" %}
+{% block admin_content %}
+
+<h2 class="mb-4">Contact Messages</h2>
+
+<div class="row g-3">
+  {% for m in messages %}
+  <div class="col-md-6">
+    <div class="card-quiet">
+      <div class="d-flex justify-content-between">
+        <h6 class="mb-1">{{ m.name }}</h6>
+        <small class="text-muted-light">{{ m.created_at.strftime('%d %b %Y, %I:%M %p') }}</small>
+      </div>
+      <p class="text-muted-light mb-1" style="font-size:.85rem;">
+        {% if m.mobile %}<i class="bi bi-telephone"></i> {{ m.mobile }}{% endif %}
+        {% if m.email %} &nbsp;|&nbsp; <i class="bi bi-envelope"></i> {{ m.email }}{% endif %}
+      </p>
+      <p class="mb-0">{{ m.message }}</p>
+    </div>
+  </div>
+  {% else %}
+  <div class="col-12">
+    <p class="text-muted-light text-center py-5">No messages received yet.</p>
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock %}
