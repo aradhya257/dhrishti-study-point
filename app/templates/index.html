@@ -1,0 +1,228 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="hero">
+  <svg class="quiet-rings d-none d-lg-block" viewBox="0 0 480 480" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <circle cx="240" cy="240" r="60"/>
+    <circle cx="240" cy="240" r="120"/>
+    <circle cx="240" cy="240" r="180"/>
+    <circle cx="240" cy="240" r="230"/>
+  </svg>
+  <div class="container position-relative">
+    <div class="row align-items-center g-4">
+      <div class="col-lg-7">
+        <p class="hero-eyebrow">Salarpur &middot; Near Mata Mai Mandir &middot; Varanasi</p>
+        <h1>A quiet room built for one thing: getting your work done.</h1>
+        <p class="tagline mb-3">&ldquo;{{ STUDY_POINT_TAGLINE }}&rdquo;</p>
+        <p class="lead-text">
+          Dhrishti Study Point is a silent self-study space in Varanasi, Uttar Pradesh —
+          not a book library, but a dedicated study room where students preparing for
+          exams, competitive tests, or focused deep work can sit, concentrate and finish
+          what they came to do.
+        </p>
+        <div class="d-flex flex-wrap gap-3 mt-4">
+          <a href="{{ url_for('main.register') }}" class="btn btn-primary-brand btn-lg px-4">
+            <i class="bi bi-pencil-square"></i> Reserve a Seat
+          </a>
+          <a href="{{ url_for('main.seats') }}" class="btn btn-outline-sage btn-lg px-4">
+            Check Seat Availability
+          </a>
+        </div>
+        <div class="d-flex flex-wrap gap-3 mt-4">
+          <span class="stat-pill {{ 'low' if available_seats < 5 else '' }}">
+            <span class="dot"></span> {{ available_seats }} of {{ total_seats }} seats free right now
+          </span>
+          <span class="stat-pill"><i class="bi bi-wifi"></i>&nbsp; Free WiFi</span>
+          <span class="stat-pill"><i class="bi bi-snow"></i>&nbsp; AC Hall</span>
+        </div>
+      </div>
+      <div class="col-lg-5 d-none d-lg-block">
+        <img src="{{ url_for('static', filename='img/study-hall.jpg') }}"
+             alt="Students studying at individual desks at Dhrishti Study Point"
+             class="img-fluid rounded" style="border: 1px solid var(--paper-line); object-fit: cover; width: 100%; height: 340px;">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <p class="section-title-eyebrow text-center">Why Students Choose Us</p>
+    <h2 class="text-center mb-5">Everything a focused mind needs, nothing it doesn't</h2>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card-quiet">
+          <div class="icon-wrap"><i class="bi bi-volume-mute"></i></div>
+          <h5>Absolute Silence</h5>
+          <p class="text-muted-light mb-0">A strict no-talking policy keeps the hall calm, so every seat is a pocket of quiet concentration.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card-quiet">
+          <div class="icon-wrap"><i class="bi bi-person-workspace"></i></div>
+          <h5>Personal Seating</h5>
+          <p class="text-muted-light mb-0">Individual, well-lit study desks with power sockets — your own corner for hours of uninterrupted work.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card-quiet">
+          <div class="icon-wrap"><i class="bi bi-clock-history"></i></div>
+          <h5>Long Study Hours</h5>
+          <p class="text-muted-light mb-0">Extended daily hours built around exam schedules, so you can study early morning, late night, or both.</p>
+        </div>
+      </div>
+    </div>
+    <div class="text-center mt-5">
+      <a href="{{ url_for('main.facilities') }}" class="btn btn-outline-sage">See All Facilities <i class="bi bi-arrow-right"></i></a>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background: var(--parchment-deep); border-top: 1px solid var(--paper-line); border-bottom: 1px solid var(--paper-line);">
+  <div class="container">
+    <div class="row align-items-center g-4">
+      <div class="col-lg-6">
+        <p class="section-title-eyebrow">Silent Study Space Near Mata Mai Mandir</p>
+        <h2>Built for students preparing seriously</h2>
+        <p class="text-muted-light">
+          Whether you're preparing for competitive exams, board exams, or working on your
+          own projects, Dhrishti Study Point gives you a dependable, distraction-free room
+          to show up to every day — right here in Salarpur, Varanasi.
+        </p>
+        <ul class="list-unstyled">
+          <li class="mb-2"><i class="bi bi-check-circle-fill" style="color: var(--sage-deep);"></i> Monthly and long-term seat plans</li>
+          <li class="mb-2"><i class="bi bi-check-circle-fill" style="color: var(--sage-deep);"></i> Daily attendance tracking</li>
+          <li class="mb-2"><i class="bi bi-check-circle-fill" style="color: var(--sage-deep);"></i> Transparent, affordable fee structure</li>
+        </ul>
+        <a href="{{ url_for('main.about') }}" class="btn btn-primary-brand">More About Us</a>
+      </div>
+      <div class="col-lg-6">
+        <div class="map-frame">
+          <iframe src="{{ GOOGLE_MAP_EMBED_URL }}" loading="lazy" title="Dhrishti Study Point location map"></iframe>
+cat > app/templates/about.html << 'EOF'
+{% extends "base.html" %}
+{% block content %}
+<section class="section pt-4">
+  <div class="container" style="max-width: 980px;">
+    <div class="row align-items-center g-4 mb-4">
+      <div class="col-lg-7">
+        <p class="section-title-eyebrow">About Us</p>
+        <h1 class="mb-3">A room built around one rule: quiet.</h1>
+        <p class="text-muted-light mb-0">
+          Dhrishti Study Point is a self-study space in Salarpur, near Mata Mai Mandir,
+          Varanasi, Uttar Pradesh. We are not a library that lends books — we are a
+          dedicated, disciplined study room where students bring their own material and
+          simply focus, for as many hours as they need.
+        </p>
+      </div>
+      <div class="col-lg-5">
+        <img src="{{ url_for('static', filename='img/study-hall.jpg') }}"
+cat > app/templates/facilities.html << 'EOF'
+{% extends "base.html" %}
+{% block content %}
+<section class="section pt-4">
+  <div class="container">
+    <p class="section-title-eyebrow text-center">Facilities</p>
+    <h1 class="text-center mb-3">Everything set up for long, focused hours</h1>
+    <p class="text-muted-light text-center mb-4" style="max-width: 640px; margin-inline: auto;">
+      Every facility at Dhrishti Study Point is
+cat > app/templates/seats.html << 'EOF'
+{% extends "base.html" %}
+{% block content %}
+<section class="section pt-4">
+  <div class="container">
+    <p class="section-title-eyebrow text-center">Live Status</p>
+    <h1 class="text-center mb-3">Seat Availability</h1>
+    <p class="text-muted-light text-center mb-4" style="max-width: 600px; margin-inline: auto;">
+      A real-time view of every seat at Dhrishti Study Point. Green means open right now —
+      book yours before it's gone.
+    </p>
+
+    <div class="d-flex justify-content-center gap-3 flex-wrap mb-4">
+      <span class="stat-pill"><span class="dot"></span> {{ available_seats }} Available</span>
+      <span class="stat-pill low"><span class="dot"></span> {{ total_seats - available_seats }} Occupied</span>
+      <span class="stat-pill"><i class="bi bi-grid"></i>&nbsp; {{ total_seats }} Total Seats</span>
+    </div>
+
+    <div
+cat > app/templates/fees.html << 'EOF'
+{% extends "base.html" %}
+{% block content %}
+<section class="section pt-4">
+  <div class="container">
+    <p class="section-title-eyebrow text-center">Fee Structure</p>
+    <h1 class="text-center mb-3">Simple, affordable plans</h1>
+    <p class="text-muted-light text-center mb-5" style="max-width: 600px; margin-inline: auto;">
+      No hidden charges. Choose a plan that fits your preparation timeline.
+      Fees are payable at the counter or on registration.
+    </p>
+
+    <div class="row g-4 justify-content-center">
+      <div class="col-md-4">
+        <div class="fee-card">
+          <h5 class="text-uppercase text-muted-light" style="letter-spacing:.08em; font-size:.8rem;">Daily</h5>
+          <div class="price">&#8377;50 <span>/ day</span></div>
+          <p class="text-muted-light mt-3 mb-4">Perfect for a trial visit or occasional focused sessions.</p>
+          <a href="{{ url_for('main.register') }}" class="btn btn-outline-sage w-100">Choose Plan</a>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="fee-card featured">
+          <span class="badge" style="background: var(--brass); color: var(--ink); position:absolute; top:-12px; left:50%; transform:translateX(-50%);">Most Popular</span>
+          <h5 class="text-uppercase text-muted-light" style="letter-spacing:.08em; font-size:.8rem;">Monthly</h5>
+          <div class="price">&#8377;900 <span>/
+cat > app/templates/contact.html << 'EOF'
+{% extends "base.html" %}
+{% block content %}
+<section class="section pt-4">
+  <div class="container">
+    <p class="section-title-eyebrow text-center">Get In Touch</p>
+    <h1 class="text-center mb-5">Contact Dhrishti Study Point</h1>
+
+    <div class="row g-5">
+      <div class="col-lg-6">
+        <div class="card-quiet mb-4">
+          <h5><i class="bi bi-geo-alt-fill"></i> Address</h5>
+          {% for line in STUDY_POINT_ADDRESS_LINES %}
+            <p class="text-muted-light mb-1">{{ line }}</p>
+          {% endfor %}
+        </div>
+        <div class="card-quiet mb-4">
+cat > app/templates/register.html << 'EOF'
+{% extends "base.html" %}
+{% block content %}
+<section class="section pt-4">
+  <div class="container" style="max-width: 560px;">
+    <p class="section-title-eyebrow text-center">Reserve Your Seat</p>
+    <h1 class="text-center mb-3">Online Registration</h1>
+    <p class="text-muted-light text-center mb-4">
+      Fill in your details below. Our team will confirm your seat and collect payment
+      when you visit Dhrishti Study Point.
+    </p>
+
+    <div class="card-quiet">
+      <form method="POST" action="{{ url_for('main.register') }}">
+        <div class="mb-3">
+          <label for="name" class="form-label">Full Name</label>
+          <input type="text" class="form-control" id="name" name="name" required>
+        </div>
+        <div class="mb-3">
+          <label for="mobile" class="form-label">Mobile Number</label>
+          <input type="tel" class="form-control" id="mobile" name="mobile" pattern="[0-9]{10,15}" required>
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email (optional)</label>
+          <input type="email" class="form-control" id="email" name="email">
+        </div>
+        <button type="submit" class="btn btn-primary-brand w-100">
+          <i class="bi bi-check2-circle"></i> Submit Registration
+        </button>
+      </form>
+    </div>
+
+    <p class="text-muted-light text-center mt-4" style="font-size: .85rem;">
+      Prefer to register in person? Visit us at Salarpur, near Mata Mai Mandir, Varanasi.
+    </p>
+  </div>
+</section>
+{% endblock %}
