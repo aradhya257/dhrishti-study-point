@@ -99,130 +99,52 @@
       <div class="col-lg-6">
         <div class="map-frame">
           <iframe src="{{ GOOGLE_MAP_EMBED_URL }}" loading="lazy" title="Dhrishti Study Point location map"></iframe>
-cat > app/templates/about.html << 'EOF'
-{% extends "base.html" %}
-{% block content %}
-<section class="section pt-4">
-  <div class="container" style="max-width: 980px;">
-    <div class="row align-items-center g-4 mb-4">
-      <div class="col-lg-7">
-        <p class="section-title-eyebrow">About Us</p>
-        <h1 class="mb-3">A room built around one rule: quiet.</h1>
-        <p class="text-muted-light mb-0">
-          Dhrishti Study Point is a self-study space in Salarpur, near Mata Mai Mandir,
-          Varanasi, Uttar Pradesh. We are not a library that lends books — we are a
-          dedicated, disciplined study room where students bring their own material and
-          simply focus, for as many hours as they need.
+        </div>
+        <p class="text-muted-light mt-2 mb-0">
+          <i class="bi bi-geo-alt-fill"></i>
+          {% for line in STUDY_POINT_ADDRESS_LINES %}{{ line }}{% if not loop.last %}, {% endif %}{% endfor %}
         </p>
       </div>
-      <div class="col-lg-5">
-        <img src="{{ url_for('static', filename='img/study-hall.jpg') }}"
-cat > app/templates/facilities.html << 'EOF'
-{% extends "base.html" %}
-{% block content %}
-<section class="section pt-4">
-  <div class="container">
-    <p class="section-title-eyebrow text-center">Facilities</p>
-    <h1 class="text-center mb-3">Everything set up for long, focused hours</h1>
-    <p class="text-muted-light text-center mb-4" style="max-width: 640px; margin-inline: auto;">
-      Every facility at Dhrishti Study Point is
-cat > app/templates/seats.html << 'EOF'
-{% extends "base.html" %}
-{% block content %}
-<section class="section pt-4">
-  <div class="container">
-    <p class="section-title-eyebrow text-center">Live Status</p>
-    <h1 class="text-center mb-3">Seat Availability</h1>
-    <p class="text-muted-light text-center mb-4" style="max-width: 600px; margin-inline: auto;">
-      A real-time view of every seat at Dhrishti Study Point. Green means open right now —
-      book yours before it's gone.
-    </p>
-
-    <div class="d-flex justify-content-center gap-3 flex-wrap mb-4">
-      <span class="stat-pill"><span class="dot"></span> {{ available_seats }} Available</span>
-      <span class="stat-pill low"><span class="dot"></span> {{ total_seats - available_seats }} Occupied</span>
-      <span class="stat-pill"><i class="bi bi-grid"></i>&nbsp; {{ total_seats }} Total Seats</span>
     </div>
-
-    <div
-cat > app/templates/fees.html << 'EOF'
-{% extends "base.html" %}
-{% block content %}
-<section class="section pt-4">
-  <div class="container">
-    <p class="section-title-eyebrow text-center">Fee Structure</p>
-    <h1 class="text-center mb-3">Simple, affordable plans</h1>
-    <p class="text-muted-light text-center mb-5" style="max-width: 600px; margin-inline: auto;">
-      No hidden charges. Choose a plan that fits your preparation timeline.
-      Fees are payable at the counter or on registration.
-    </p>
-
-    <div class="row g-4 justify-content-center">
-      <div class="col-md-4">
-        <div class="fee-card">
-          <h5 class="text-uppercase text-muted-light" style="letter-spacing:.08em; font-size:.8rem;">Daily</h5>
-          <div class="price">&#8377;50 <span>/ day</span></div>
-          <p class="text-muted-light mt-3 mb-4">Perfect for a trial visit or occasional focused sessions.</p>
-          <a href="{{ url_for('main.register') }}" class="btn btn-outline-sage w-100">Choose Plan</a>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="fee-card featured">
-          <span class="badge" style="background: var(--brass); color: var(--ink); position:absolute; top:-12px; left:50%; transform:translateX(-50%);">Most Popular</span>
-          <h5 class="text-uppercase text-muted-light" style="letter-spacing:.08em; font-size:.8rem;">Monthly</h5>
-          <div class="price">&#8377;900 <span>/
-cat > app/templates/contact.html << 'EOF'
-{% extends "base.html" %}
-{% block content %}
-<section class="section pt-4">
-  <div class="container">
-    <p class="section-title-eyebrow text-center">Get In Touch</p>
-    <h1 class="text-center mb-5">Contact Dhrishti Study Point</h1>
-
-    <div class="row g-5">
-      <div class="col-lg-6">
-        <div class="card-quiet mb-4">
-          <h5><i class="bi bi-geo-alt-fill"></i> Address</h5>
-          {% for line in STUDY_POINT_ADDRESS_LINES %}
-            <p class="text-muted-light mb-1">{{ line }}</p>
-          {% endfor %}
-        </div>
-        <div class="card-quiet mb-4">
-cat > app/templates/register.html << 'EOF'
-{% extends "base.html" %}
-{% block content %}
-<section class="section pt-4">
-  <div class="container" style="max-width: 560px;">
-    <p class="section-title-eyebrow text-center">Reserve Your Seat</p>
-    <h1 class="text-center mb-3">Online Registration</h1>
-    <p class="text-muted-light text-center mb-4">
-      Fill in your details below. Our team will confirm your seat and collect payment
-      when you visit Dhrishti Study Point.
-    </p>
-
-    <div class="card-quiet">
-      <form method="POST" action="{{ url_for('main.register') }}">
-        <div class="mb-3">
-          <label for="name" class="form-label">Full Name</label>
-          <input type="text" class="form-control" id="name" name="name" required>
-        </div>
-        <div class="mb-3">
-          <label for="mobile" class="form-label">Mobile Number</label>
-          <input type="tel" class="form-control" id="mobile" name="mobile" pattern="[0-9]{10,15}" required>
-        </div>
-        <div class="mb-3">
-          <label for="email" class="form-label">Email (optional)</label>
-          <input type="email" class="form-control" id="email" name="email">
-        </div>
-        <button type="submit" class="btn btn-primary-brand w-100">
-          <i class="bi bi-check2-circle"></i> Submit Registration
-        </button>
-      </form>
-    </div>
-
-    <p class="text-muted-light text-center mt-4" style="font-size: .85rem;">
-      Prefer to register in person? Visit us at Salarpur, near Mata Mai Mandir, Varanasi.
-    </p>
   </div>
 </section>
+
+<section class="section" style="background: var(--parchment-deep); border-top: 1px solid var(--paper-line); border-bottom: 1px solid var(--paper-line);">
+  <div class="container">
+    <div class="row align-items-center g-4">
+      <div class="col-lg-5 text-center">
+        <a href="{{ url_for('main.flyer') }}">
+          <img src="{{ url_for('static', filename='img/poster.png') }}"
+               alt="Dhrishti Study Point flyer with facilities, address and contact number"
+               class="img-fluid rounded" style="max-height: 340px; border: 1px solid var(--paper-line); box-shadow: var(--shadow-soft);">
+        </a>
+      </div>
+      <div class="col-lg-7">
+        <p class="section-title-eyebrow">Share &amp; Print</p>
+        <h2>Have our flyer handy</h2>
+        <p class="text-muted-light">
+          Everything about Dhrishti Study Point — facilities, address and contact number —
+          in one shareable flyer. Print it, forward it on WhatsApp, or pin it up for a friend
+          who's looking for a quiet place to study.
+        </p>
+        <a href="{{ url_for('main.flyer') }}" class="btn btn-primary-brand me-2">
+          <i class="bi bi-eye"></i> View Flyer
+        </a>
+        <a href="{{ url_for('static', filename='img/poster.png') }}" download class="btn btn-outline-sage">
+          <i class="bi bi-download"></i> Download
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section text-center">
+  <div class="container">
+    <h2>Ready to find your quiet seat?</h2>
+    <p class="text-muted-light mb-4">Register online in two minutes, or visit us in person at Salarpur, Varanasi.</p>
+    <a href="{{ url_for('main.register') }}" class="btn btn-primary-brand btn-lg px-5">Register Now</a>
+  </div>
+</section>
+
 {% endblock %}
+         
