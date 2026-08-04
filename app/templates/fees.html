@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="section pt-4">
+  <div class="container">
+    <p class="section-title-eyebrow text-center">Fee Structure</p>
+    <h1 class="text-center mb-3">Simple, affordable plans</h1>
+    <div class="row g-4 justify-content-center">
+      <div class="col-md-4"><div class="fee-card"><h5>Daily</h5><div class="price">&#8377;50 <span>/ day</span></div><a href="{{ url_for('main.register') }}" class="btn btn-outline-sage w-100 mt-3">Choose Plan</a></div></div>
+      <div class="col-md-4"><div class="fee-card featured"><h5>Monthly</h5><div class="price">&#8377;900 <span>/ month</span></div><a href="{{ url_for('main.register') }}" class="btn btn-primary-brand w-100 mt-3">Choose Plan</a></div></div>
+      <div class="col-md-4"><div class="fee-card"><h5>Quarterly</h5><div class="price">&#8377;2400 <span>/ 3 months</span></div><a href="{{ url_for('main.register') }}" class="btn btn-outline-sage w-100 mt-3">Choose Plan</a></div></div>
+    </div>
+  </div>
+</section>
+{% endblock %}
