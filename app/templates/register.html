@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="section pt-4">
+  <div class="container" style="max-width: 560px;">
+    <h1 class="text-center mb-3">Online Registration</h1>
+    <div class="card-quiet">
+      <form method="POST" action="{{ url_for('main.register') }}">
+        <div class="mb-3"><label class="form-label">Full Name</label><input type="text" class="form-control" name="name" required></div>
+        <div class="mb-3"><label class="form-label">Mobile Number</label><input type="tel" class="form-control" name="mobile" required></div>
+        <div class="mb-3"><label class="form-label">Email (optional)</label><input type="email" class="form-control" name="email"></div>
+        <button type="submit" class="btn btn-primary-brand w-100">Submit Registration</button>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}
