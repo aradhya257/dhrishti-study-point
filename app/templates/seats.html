@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="section pt-4">
+  <div class="container">
+    <p class="section-title-eyebrow text-center">Live Status</p>
+    <h1 class="text-center mb-3">Seat Availability</h1>
+    <div class="d-flex justify-content-center gap-3 flex-wrap mb-4">
+      <span class="stat-pill"><span class="dot"></span> {{ available_seats }} Available</span>
+      <span class="stat-pill low"><span class="dot"></span> {{ total_seats - available_seats }} Occupied</span>
+      <span class="stat-pill"><i class="bi bi-grid"></i>&nbsp; {{ total_seats }} Total Seats</span>
+    </div>
+    <div class="seat-grid mb-4">
+      {% for seat in all_seats %}
+        <div class="seat-box {{ seat.status }}">{{ seat.seat_no }}</div>
+      {% endfor %}
+    </div>
+    <div class="text-center">
+      <a href="{{ url_for('main.register') }}" class="btn btn-primary-brand btn-lg px-5">Reserve a Seat</a>
+    </div>
+  </div>
+</section>
+{% endblock %}
