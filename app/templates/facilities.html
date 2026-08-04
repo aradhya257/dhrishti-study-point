@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="section pt-4">
+  <div class="container">
+    <p class="section-title-eyebrow text-center">Facilities</p>
+    <h1 class="text-center mb-3">Everything set up for long, focused hours</h1>
+    <img src="{{ url_for('static', filename='img/study-hall.jpg') }}"
+         alt="Students studying at individual desks at Dhrishti Study Point"
+         class="img-fluid rounded mb-5" style="border: 1px solid var(--paper-line); object-fit: cover; width: 100%; max-height: 380px;">
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-4"><div class="card-quiet"><div class="icon-wrap"><i class="bi bi-wifi"></i></div><h5>High-Speed WiFi</h5><p class="text-muted-light mb-0">Reliable internet throughout the hall.</p></div></div>
+      <div class="col-md-6 col-lg-4"><div class="card-quiet"><div class="icon-wrap"><i class="bi bi-volume-mute"></i></div><h5>Silent Environment</h5><p class="text-muted-light mb-0">A strictly enforced no-talking policy.</p></div></div>
+      <div class="col-md-6 col-lg-4"><div class="card-quiet"><div class="icon-wrap"><i class="bi bi-person-workspace"></i></div><h5>Individual Seating</h5><p class="text-muted-light mb-0">Assigned, partitioned desks with lighting and sockets.</p></div></div>
+      <div class="col-md-6 col-lg-4"><div class="card-quiet"><div class="icon-wrap"><i class="bi bi-snow"></i></div><h5>Air Conditioned Hall</h5><p class="text-muted-light mb-0">Comfortable through Varanasi's summers and winters.</p></div></div>
+      <div class="col-md-6 col-lg-4"><div class="card-quiet"><div class="icon-wrap"><i class="bi bi-cup-hot"></i></div><h5>Drinking Water</h5><p class="text-muted-light mb-0">Clean drinking water on premises.</p></div></div>
+      <div class="col-md-6 col-lg-4"><div class="card-quiet"><div class="icon-wrap"><i class="bi bi-clock"></i></div><h5>Extended Hours</h5><p class="text-muted-light mb-0">Long daily hours around exam timelines.</p></div></div>
+    </div>
+    <div class="text-center mt-5">
+      <a href="{{ url_for('main.seats') }}" class="btn btn-primary-brand me-2">Check Seat Availability</a>
+      <a href="{{ url_for('main.fees') }}" class="btn btn-outline-sage">View Fee Structure</a>
+    </div>
+  </div>
+</section>
+{% endblock %}
