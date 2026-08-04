@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="login-shell">
+  <div class="login-card">
+    <div class="text-center mb-4"><h3>Admin Login</h3></div>
+    <form method="POST" action="{{ url_for('auth.login') }}">
+      <div class="mb-3"><label class="form-label">Username</label><input type="text" class="form-control" name="username" required autofocus></div>
+      <div class="mb-3"><label class="form-label">Password</label><input type="password" class="form-control" name="password" required></div>
+      <button type="submit" class="btn btn-primary-brand w-100">Log In</button>
+    </form>
+  </div>
+</div>
+{% endblock %}
